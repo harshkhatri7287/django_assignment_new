@@ -1,0 +1,45 @@
+{% load static %}
+<link
+rel="stylesheet"
+type="text/css"
+href="{% static 'items/css/bootstrap.css' %}"/>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ADD PRODUCT</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url("{% static 'items/images/edit.jpg' %}");
+            background-size: cover;
+        }
+        .center {
+            text-align: center;
+            background-color: rgba(200, 200, 200, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        table {
+            font-size: 18px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="center">
+        <h1>Add New Product</h1>
+        <form method="post" enctype="multipart/form-data">
+            <table>
+                    {% csrf_token %}
+                    {{ form.as_table }}
+            </table>
+            <button type="submit" class="btn btn-success mt-2">Edit Product</button>
+         </form>
+    </div>
+</body>
+</html>

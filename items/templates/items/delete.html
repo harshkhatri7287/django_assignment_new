@@ -1,0 +1,54 @@
+{% load static %}
+<link
+rel="stylesheet"
+type="text/css"
+href="{% static 'items/css/bootstrap.css' %}"/>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DELETE</title>
+    <link rel="stylesheet" href="{% static 'items/css/bootstrap.min.css' %}">
+    <style>
+        .center {
+            text-align: center;
+            background-color: #b6b4b4;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .card-body {
+            background-color: #d0d2d3; 
+            padding-left: 20;
+            padding-right: 20;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-4" style="width: 33%;">
+    <h1 class="center">Delete Component</h1>
+    <div class="card mt-4">
+        <div class="card-body">
+            <h4 class="card-title">{{ obj.name }}</h5>
+            <p class="card-text">Category: {{ obj.category }}</p>
+            <p class="card-text">Price: {{ obj.price }}</p>
+            <p class="card-text">Discount: {{ obj.discount }}%</p>
+            
+            <form method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Confirm Delete</button>
+                <a href="/" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
