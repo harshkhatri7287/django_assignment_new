@@ -1,47 +1,69 @@
 {% load static %}
-<link
-rel="stylesheet"
-type="text/css"
-href="{% static 'items/css/bootstrap.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'items/css/bootstrap.css' %}"/>
+
 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Amazmon</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'static/css/bootstrap.min.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'static/css/custom.css' %}">
     <style>
         .card-button {
-            margin-right: 20px;
+            margin-right: 50px;
+        }
+        body {
+            background-image:  url("{% static 'items/images/shop.jpg' %}");
+            background-size: cover;
         }
     </style>
+
 </head>
-<body>
-  <script src="{% static 'static/js/bootstrap.min.js' %}"></script>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
+<body class="bg-light">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="{% static 'items/js/bootstrap.min.js' %}"></script>
+  <nav class="navbar navbar-expand-lg " style="background-color: rgb(189, 189, 189); padding-top: 0px; padding-bottom: 0px;">
+    <div class="container-fluid" style="margin-bottom: 0;">
+      <a class="navbar-brand" href="/home">Home</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/">HOME</a>
+            <a class="nav-link active" aria-current="page" href="/home/create">Add</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="/create">ADD</a>
+            <a class="nav-link active" href="/home/contact_us">Contact Us</a>
           </li>
+          
         </ul>
+        <form class="d-flex" role="search" style="margin-top: 10px;">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
       </div>
     </div>
   </nav>
+  {% if messages %}
+  <ul class="messages" style="margin-top: 0; margin-bottom: 0;"></ul>
+    {% for message in messages %}
+      <div class="alert alert-success alert-dismissible fade show my-0" role="alert">
+        <strong>{{ message }}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% endfor %}
+  </ul>
+  {% endif %}
+
   <div class="row">
     {% for data in datalist %}
-        <div class="col-sm-4" style="width: 18%">
-            <div class="card mb-4" style="width: 15rem;">
-                <img src="https://source.unsplash.com/200x200/?{{ data.name }},{{ data.category }}" class="card-img-top" alt="{{ data.name }}">
-                <div class="card-body">
+        <div class="col-sm-4" style="width: 20%">
+            <div class="card mb-4" style="width: 20rem;">
+                <img src="https://source.unsplash.com/200x100/?{{ data.name }},{{ data.name }}" class="card-img-top" alt="{{ data.name }}">
+                <div class="card-body my-0" >
                     <h5 class="card-title">{{ data.name }}</h5>
-                    <p class="card-text">Category: {{ data.category }}</p>
-                    <p class="card-text">Price: {{ data.price }}</p>
-                    <p class="card-text">Discount: {{ data.discount }}%</p>
+                    <p class="card-text mb-1">Category: {{ data.category }}</p>
+                    <p class="card-text mb-1 ">Price: {{ data.price }}</p>
+                    <p class="card-text mb-2">Discount: {{ data.discount }}%</p>
                     <a class="btn btn-danger card-button" href="{{ data.name}}/delete" role="button">DELETE</a>
                     <a class="btn btn-success card-button" href="{{data.name}}/update" role="button">EDIT</a>  
                 </div>

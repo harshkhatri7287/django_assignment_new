@@ -22,6 +22,8 @@ href="{% static 'items/css/bootstrap.css' %}"/>
             align-items: center;
             min-height: 100vh;
             margin: 0;
+            background-image: url("{% static 'items/images/edit.jpg' %}");
+            background-size: cover;
         }
         .card-body {
             background-color: #d0d2d3; 
@@ -44,7 +46,7 @@ href="{% static 'items/css/bootstrap.css' %}"/>
             <form method="POST">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-danger">Confirm Delete</button>
-                <a href="/" class="btn btn-secondary">Cancel</a>
+                <a href="/home" class="btn btn-secondary">Cancel</a>
             </form>
         </div>
     </div>
