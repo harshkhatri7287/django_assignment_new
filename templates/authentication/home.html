@@ -1,0 +1,37 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'items/css/bootstrap.css' %}"/>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazmon</title>
+    <style>
+        body {
+            background-image: url("{% static 'authentication/images/signup.jpeg' %}");
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .custom-card {
+            width: 400px; /* Adjust the width as needed */
+        }
+    </style>
+</head>
+<body>
+    <div class="card custom-card">
+        <img src="https://source.unsplash.com/200x100/?amazon shopping logo,amazon shopping logo" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Welcome to our Shopping App</h5>
+            <p class="card-text">Already a user</p>
+            <a href="/signin/" class="btn btn-primary">SignIn</a>
+            <p class="card-text">New to our site user?</p>
+            <a href="/signup/" class="btn btn-primary">SignUp</a>
+        </div>
+    </div>
+</body>
+</html>

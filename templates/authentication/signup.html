@@ -1,0 +1,52 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'items/css/bootstrap.css' %}"/>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+    <link rel="stylesheet" href="{% static 'items/css/bootstrap.min.css' %}">
+    <style>
+        body {
+            background-image: url("{% static 'authentication/images/signup.jpeg' %}");
+            background-size: cover;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container mt-5" style="width: 30%;">
+        <h3 class="text-center">SignUp</h3>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" class="form-control" placeholder="Create a username" required>
+            </div>
+            <div class="form-group">
+                <label for="fname">First Name:</label>
+                <input type="text" id="fname" name="fname" class="form-control" placeholder="Your first name" required>
+            </div>
+            <div class="form-group">
+                <label for="lname">Last Name:</label>
+                <input type="text" id="lname" name="lname" class="form-control" placeholder="Your last name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" class="form-control" placeholder="Your email address" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" class="form-control" placeholder="Create a password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirm_password">Confirm Password:</label>
+                <input type="password" id="confirm_password" name="confirm_password" class="form-control" placeholder="Confirm your password" required>
+            </div>
+            <button type="submit" class="btn btn-primary mt-4">Sign Up</button>
+        </form>
+    </div>
+</body>
+</html>
