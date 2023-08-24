@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -44,3 +44,19 @@ def signin(request):
 def signout(request):
     logout(request)
     return redirect('/signin')
+
+
+def change_password(request):
+    if request.method == "POST":
+        username = request.POST.get('username')
+        new_password = request.POST.get('new_password')
+        obj = get_object_or_404(User, username=username)
+        obj.set_password(new_password)
+        obj.save()
+        messages.success(request, "Password changed successfully!")
+        return redirect('/signin/')
+    return render(request, 'authentication/change_password.html')
+
+    
+
+

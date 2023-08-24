@@ -1,8 +1,20 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from .decorators import superuser_check
 from .forms import ShopForm
 from .models import ShoppingItem
 from django.contrib import messages
+from django.db.models.signals import pre_save, post_save
+from django.dispatch import receiver
+from .models import ShoppingItem
 
+@receiver(pre_save, sender=ShoppingItem)
+def call(sender, instance, **kwargs):
+    print("Object is not saved yet!")
+    print(f"Name of the  product: {instance.name}")
+
+@receiver(post_save, sender=ShoppingItem)
+def call(sender, instance, **kwargs):
+    print("Object is saved!")
 
 def index(request):
     datadict = {}
@@ -21,6 +33,7 @@ def delete_view(request, item_name):
     return render(request, 'items/delete.html', data)
 
 
+@superuser_check
 def create_view(request):
     context = {}
     form = ShopForm(request.POST or None)
