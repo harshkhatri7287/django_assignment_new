@@ -5,8 +5,12 @@ from .models import ShoppingItem
 from django.contrib import messages
 from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
+from rest_framework import viewsets
+from rest_framework import permissions
+from .serializers import ShoppingItemSerializer
 from .models import ShoppingItem
 
+ 
 @receiver(pre_save, sender=ShoppingItem)
 def call(sender, instance, **kwargs):
     print("Object is not saved yet!")
@@ -54,3 +58,10 @@ def update_view(request, item_name):
         return redirect('/home')
     context['form'] = form
     return render(request, 'items/update.html', context)
+
+
+
+class ItemViewSet(viewsets.ModelViewSet):
+    queryset = ShoppingItem.objects.all()
+    serializer_class = ShoppingItemSerializer
+    permission_classes = [permissions.IsAuthenticated]
